@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="imgRc">
+    <file>images/convert.png</file>
+    <file>images/removeObject.png</file>
+    <file>images/previewData.png</file>
+    <file>images/moreOperationsOnData.png</file>
+    <file>images/checkbox.png</file>
+    <file>images/mainWindow.png</file>
+    <file>images/objects.png</file>
+    <file>images/protocol.png</file>
+    <file>images/primaryAnalysis.png</file>
+    <file>images/checkbox.png</file>
+    <file>images/close.png</file>
+    <file>images/inbox.png</file>
+    <file>images/outbox.png</file>
+  </qresource>
+</RCC>

@@ -24,11 +24,11 @@
    <enum>Qt::NoFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Data analysis</string>
+   <string>Програмне забезпечення для аналізу даних.</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="dataAnalysisRC.qrc">
-    <normaloff>:/imgRc/images/analytics.png</normaloff>:/imgRc/images/analytics.png</iconset>
+   <iconset resource="../dataAnalysisRC.qrc">
+    <normaloff>:/imgRc/images/mainWindow.png</normaloff>:/imgRc/images/mainWindow.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -82,9 +82,7 @@ QMenuBar::item:pressed
         x1:0, y1:0,
         x2:0, y2:1,
         stop:1 #212121,
-        stop:0.4 #343434/*,
-        stop:0.2 #343434,
-        stop:0.1 #ffaa00*/
+        stop:0.4 #343434
     );
     margin-bottom:-1px;
     padding-bottom:1px;
@@ -114,92 +112,6 @@ QWidget:disabled
 QAbstractItemView
 {
     background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0.1 #646464, stop: 1 #5d5d5d);
-}
-
-
-QLineEdit
-{
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
-    padding: 1px;
-    border-style: solid;
-    border: 1px solid #1e1e1e;
-    border-radius: 5;
-}
-
-QPushButton
-{
-    color: #b1b1b1;
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
-    border-width: 1px;
-    border-color: #1e1e1e;
-    border-style: solid;
-    border-radius: 6;
-    padding: 3px;
-    font-size: 12px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-QPushButton:pressed
-{
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
-}
-
-QComboBox
-{
-    selection-background-color: #ffaa00;
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
-    border-style: solid;
-    border: 1px solid #1e1e1e;
-    border-radius: 5;
-}
-
-QComboBox:hover,QPushButton:hover
-{
-    border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
-}
-
-
-QComboBox:on
-{
-    padding-top: 3px;
-    padding-left: 4px;
-    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
-    selection-background-color: #ffaa00;
-}
-
-QComboBox QAbstractItemView
-{
-    border: 2px solid darkgray;
-    selection-background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
-}
-
-QComboBox::drop-down
-{
-     subcontrol-origin: padding;
-     subcontrol-position: top right;
-     width: 15px;
-
-     border-left-width: 0px;
-     border-left-color: darkgray;
-     border-left-style: solid; /* just a single line */
-     border-top-right-radius: 3px; /* same radius as the QComboBox */
-     border-bottom-right-radius: 3px;
- }
-
-QComboBox::down-arrow
-{
-     image: url(:/down_arrow.png);
-}
-
-QGroupBox:focus
-{
-border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
-}
-
-QTextEdit:focus
-{
-    border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
 }
 
 QScrollBar:horizontal {
@@ -296,27 +208,12 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
       background: none;
 }
 
-QTextEdit
-{
-    background-color: #242424;
-}
-
-QPlainTextEdit
-{
-    background-color: #242424;
-}
-
 QHeaderView::section
 {
     background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #616161, stop: 0.5 #505050, stop: 0.6 #434343, stop:1 #656565);
     color: white;
     padding-left: 4px;
     border: 1px solid #6c6c6c;
-}
-
-QCheckBox:disabled
-{
-color: #414141;
 }
 
 QDockWidget::title
@@ -330,7 +227,8 @@ QDockWidget::close-button, QDockWidget::float-button
 {
     text-align: center;
     spacing: 1px;
-    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #323232, stop: 0.5 #242424, stop:1 #323232);
+	
+	background-color: rgb(4, 98, 100);
 }
 
 QDockWidget::close-button:hover, QDockWidget::float-button:hover
@@ -349,7 +247,7 @@ QMainWindow::separator
     color: white;
     padding-left: 4px;
     border: 1px solid #4c4c4c;
-    spacing: 3px; /* spacing between items in the tool bar */
+    spacing: 3px;
 }
 
 QMainWindow::separator:hover
@@ -359,12 +257,12 @@ QMainWindow::separator:hover
     color: white;
     padding-left: 4px;
     border: 1px solid #6c6c6c;
-    spacing: 3px; /* spacing between items in the tool bar */
+    spacing: 3px;
 }
 
 QToolBar::handle
 {
-     spacing: 3px; /* spacing between items in the tool bar */
+     spacing: 3px;
      background: url(:/images/handle.png);
 }
 
@@ -383,13 +281,6 @@ QProgressBar
     border: 2px solid grey;
     border-radius: 5px;
     text-align: center;
-}
-
-QProgressBar::chunk
-{
-    background-color: #d7801a;
-    width: 2.15px;
-    margin: 0.5px;
 }
 
 QTabBar::tab {
@@ -411,13 +302,13 @@ QTabWidget::pane {
 
 QTabBar::tab:last
 {
-    margin-right: 0; /* the last selected tab has nothing to overlap with on the right */
+    margin-right: 0;
     border-top-right-radius: 3px;
 }
 
 QTabBar::tab:first:!selected
 {
- margin-left: 0px; /* the last selected tab has nothing to overlap with on the right */
+ margin-left: 0px;
 
 
     border-top-left-radius: 3px;
@@ -440,58 +331,11 @@ QTabBar::tab:selected
 
 QTabBar::tab:!selected:hover
 {
-    /*border-top: 2px solid #ffaa00;
-    padding-bottom: 3px;*/
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:0.4 #343434, stop:0.2 #343434, stop:0.1 #ffaa00);
 }
-
-QRadioButton::indicator:checked, QRadioButton::indicator:unchecked{
-    color: #b1b1b1;
-    background-color: #323232;
-    border: 1px solid #b1b1b1;
-    border-radius: 6px;
-}
-
-QRadioButton::indicator:checked
-{
-    background-color: qradialgradient(
-        cx: 0.5, cy: 0.5,
-        fx: 0.5, fy: 0.5,
-        radius: 1.0,
-        stop: 0.25 #ffaa00,
-        stop: 0.3 #323232
-    );
-}
-
-QCheckBox::indicator{
-    color: #b1b1b1;
-    background-color: #323232;
-    border: 1px solid #b1b1b1;
-    width: 9px;
-    height: 9px;
-}
-
-QRadioButton::indicator
-{
-    border-radius: 6px;
-}
-
-QRadioButton::indicator:hover, QCheckBox::indicator:hover
-{
-    border: 1px solid #ffaa00;
-}
-
-QCheckBox::indicator:checked
-{
-    image:url(:/images/checkbox.png);
-}
-
-QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
-{
-    border: 1px solid #444;
-}</string>
+</string>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonIconOnly</enum>
@@ -539,9 +383,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
       <property name="background">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>2</red>
-         <green>36</green>
-         <blue>32</blue>
+         <red>3</red>
+         <green>61</green>
+         <blue>62</blue>
         </color>
        </brush>
       </property>
@@ -571,7 +415,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
   <widget class="QDockWidget" name="dockWidgetDataView">
    <property name="minimumSize">
     <size>
-     <width>162</width>
+     <width>298</width>
      <height>264</height>
     </size>
    </property>
@@ -588,27 +432,64 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>false</bool>
    </property>
    <property name="windowTitle">
-    <string>Data view</string>
+    <string>Об'єкти</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContentsDataSet">
-    <layout class="QGridLayout" name="gridLayout_4">
-     <item row="1" column="0">
-      <widget class="QGroupBox" name="groupBoxFileData">
-       <property name="title">
-        <string>File data</string>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="1">
+      <widget class="QToolButton" name="toolButtonObjectsSettings">
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
        </property>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="QTextBrowser" name="textBrowserFileData"/>
-        </item>
-       </layout>
+       <property name="toolTip">
+        <string>Додаткові налаштування даних</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../dataAnalysisRC.qrc">
+         <normaloff>:/imgRc/images/moreOperationsOnData.png</normaloff>:/imgRc/images/moreOperationsOnData.png</iconset>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::InstantPopup</enum>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonIconOnly</enum>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QListWidget" name="listWidgetDataView"/>
+      <widget class="QLineEdit" name="lineEditFilter">
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Фільтр</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QListView" name="listViewObjects">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -624,49 +505,38 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>&amp;File</string>
+     <string>&amp;Файл</string>
     </property>
     <addaction name="actionOpen"/>
-    <addaction name="separator"/>
-    <addaction name="actionSaveAll"/>
     <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionConvertToCSV"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuNelp">
     <property name="title">
-     <string>&amp;Help</string>
+     <string>&amp;Допомога</string>
     </property>
     <addaction name="actionDataAnalysisHelp"/>
-    <addaction name="separator"/>
     <addaction name="actionUsage"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>&amp;View</string>
+     <string>&amp;Перегляд</string>
     </property>
-    <widget class="QMenu" name="menuMore">
-     <property name="title">
-      <string>More...</string>
-     </property>
-     <addaction name="actionShowFileData"/>
-     <addaction name="actionShowAdditionalDetails"/>
-    </widget>
     <addaction name="actionDataView"/>
     <addaction name="actionProtocolRender"/>
     <addaction name="separator"/>
-    <addaction name="actionShowFileDialog"/>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
-    <addaction name="menuMore"/>
-    <addaction name="actionCloseAll"/>
+    <addaction name="actionOneDimensionalAnalysis"/>
+    <addaction name="actionTwoDimensionalAnalysis"/>
+    <addaction name="actionMultiDimensionalAnalysis"/>
    </widget>
    <widget class="QMenu" name="menuAnalysisTools">
     <property name="title">
-     <string>&amp;Window</string>
+     <string>&amp;Вікно</string>
     </property>
-    <addaction name="actionMaximize"/>
-    <addaction name="separator"/>
+    <addaction name="actionCloseAll"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -687,50 +557,25 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="windowTitle">
-    <string>Protocol</string>
+    <string>Протокол</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContentsProtocol">
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="1" column="0">
-      <widget class="QGroupBox" name="groupBoxProtocolDetails">
-       <property name="title">
-        <string>Additional details</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QTextBrowser" name="textBrowserProtocolDetails"/>
-        </item>
-       </layout>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QTreeView" name="treeViewProtocol"/>
      </item>
     </layout>
    </widget>
   </widget>
-  <widget class="QToolBar" name="toolBarFileActions">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionOpen"/>
-   <addaction name="actionSaveAll"/>
-  </widget>
   <widget class="QToolBar" name="toolBarViewActions">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
    <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
@@ -738,68 +583,55 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    <addaction name="actionDataView"/>
    <addaction name="actionProtocolRender"/>
   </widget>
-  <widget class="QToolBar" name="toolBarOtherActions">
+  <widget class="QToolBar" name="toolBarAnalysisActions">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>toolBar</string>
    </property>
    <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionCloseAll"/>
+   <addaction name="actionPrimaryAnalysis"/>
   </widget>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="dataAnalysisRC.qrc">
+    <iconset resource="../dataAnalysisRC.qrc">
      <normaloff>:/imgRc/images/inbox.png</normaloff>:/imgRc/images/inbox.png</iconset>
    </property>
    <property name="text">
-    <string>Open...</string>
+    <string>Відкрити...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>Save selected</string>
-   </property>
-   <property name="toolTip">
-    <string>Save selected</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>Вийти</string>
    </property>
   </action>
   <action name="actionDataAnalysisHelp">
    <property name="text">
-    <string>About</string>
-   </property>
-  </action>
-  <action name="actionAboutUI">
-   <property name="text">
-    <string>About UI</string>
+    <string>Про програму</string>
    </property>
   </action>
   <action name="actionUsage">
    <property name="text">
-    <string>Usage</string>
+    <string>Як використовувати</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
    </property>
   </action>
-  <action name="actionSaveAll">
+  <action name="actionSave">
    <property name="icon">
-    <iconset resource="dataAnalysisRC.qrc">
+    <iconset resource="../dataAnalysisRC.qrc">
      <normaloff>:/imgRc/images/outbox.png</normaloff>:/imgRc/images/outbox.png</iconset>
    </property>
    <property name="text">
-    <string>Save all</string>
+    <string>Зберегти</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -813,11 +645,11 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="dataAnalysisRC.qrc">
-     <normaloff>:/imgRc/images/file.png</normaloff>:/imgRc/images/file.png</iconset>
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/objects.png</normaloff>:/imgRc/images/objects.png</iconset>
    </property>
    <property name="text">
-    <string>Data view</string>
+    <string>Об'єкти</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -831,76 +663,107 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="dataAnalysisRC.qrc">
-     <normaloff>:/imgRc/images/analytics-2.png</normaloff>:/imgRc/images/analytics-2.png</iconset>
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/protocol.png</normaloff>:/imgRc/images/protocol.png</iconset>
    </property>
    <property name="text">
-    <string>Protocol render</string>
+    <string>Протокол</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
    </property>
   </action>
-  <action name="actionShowFileData">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Show file data</string>
-   </property>
-  </action>
-  <action name="actionShowAdditionalDetails">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Show additional details</string>
-   </property>
-  </action>
   <action name="actionCloseAll">
    <property name="icon">
-    <iconset resource="dataAnalysisRC.qrc">
+    <iconset resource="../dataAnalysisRC.qrc">
      <normaloff>:/imgRc/images/close.png</normaloff>:/imgRc/images/close.png</iconset>
    </property>
    <property name="text">
-    <string>Close all</string>
+    <string>Приховати відкрите</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionShowFileDialog">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="dataAnalysisRC.qrc">
-     <normaloff>:/imgRc/images/openFileDialog.png</normaloff>:/imgRc/images/openFileDialog.png</iconset>
-   </property>
+  <action name="actionOneDimensionalAnalysis">
    <property name="text">
-    <string>Open file dialog</string>
-   </property>
-   <property name="toolTip">
-    <string>Open file dialog</string>
+    <string>Аналіз одновимірних даних</string>
    </property>
   </action>
-  <action name="actionMaximize">
+  <action name="actionTwoDimensionalAnalysis">
    <property name="text">
-    <string>&amp;Minimize</string>
+    <string>Аналіз двовимірних даних</string>
+   </property>
+  </action>
+  <action name="actionMultiDimensionalAnalysis">
+   <property name="text">
+    <string>Аналіз багатовимірних даних</string>
+   </property>
+  </action>
+  <action name="actionPrimaryAnalysis">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/primaryAnalysis.png</normaloff>:/imgRc/images/primaryAnalysis.png</iconset>
+   </property>
+   <property name="text">
+    <string>Провести первинний статистичний аналіз</string>
+   </property>
+  </action>
+  <action name="actionDeleteObjects">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/removeObject.png</normaloff>:/imgRc/images/removeObject.png</iconset>
+   </property>
+   <property name="text">
+    <string>Видалити об'єкт</string>
+   </property>
+  </action>
+  <action name="actionPreviewObjects">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/previewData.png</normaloff>:/imgRc/images/previewData.png</iconset>
+   </property>
+   <property name="text">
+    <string>Продивитись дані</string>
+   </property>
+  </action>
+  <action name="actionShiftData">
+   <property name="text">
+    <string>Зсув даних</string>
+   </property>
+  </action>
+  <action name="actionLogData">
+   <property name="text">
+    <string>Логарифмувати дані</string>
+   </property>
+  </action>
+  <action name="actionStandartizeData">
+   <property name="text">
+    <string>Стандартизувати дані</string>
+   </property>
+  </action>
+  <action name="actionDeleteAbnormalData">
+   <property name="text">
+    <string>Видалити аномальні спостереження</string>
+   </property>
+  </action>
+  <action name="actionConvertToCSV">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/convert.png</normaloff>:/imgRc/images/convert.png</iconset>
+   </property>
+   <property name="text">
+    <string>Конвертувати у csv</string>
+   </property>
+  </action>
+  <action name="actionSelectAll">
+   <property name="text">
+    <string>Обрати усі</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="dataAnalysisRC.qrc"/>
+  <include location="../dataAnalysisRC.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -964,70 +827,6 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
     <hint type="destinationlabel">
      <x>-1</x>
      <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionShowAdditionalDetails</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>groupBoxProtocolDetails</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>849</x>
-     <y>378</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionShowFileData</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>groupBoxFileData</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>146</x>
-     <y>386</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionCloseAll</sender>
-   <signal>triggered(bool)</signal>
-   <receiver>groupBoxFileData</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>146</x>
-     <y>387</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionCloseAll</sender>
-   <signal>triggered(bool)</signal>
-   <receiver>groupBoxProtocolDetails</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>849</x>
-     <y>379</y>
     </hint>
    </hints>
   </connection>
