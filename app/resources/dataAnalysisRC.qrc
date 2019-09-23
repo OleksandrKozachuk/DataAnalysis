@@ -1,8 +1,14 @@
 <RCC>
   <qresource prefix="imgRc">
+    <file>images/correlation.png</file>
+    <file>images/factor.png</file>
+    <file>images/PCA.png</file>
+    <file>images/regression.png</file>
+    <file>images/minus.png</file>
     <file>images/convert.png</file>
-    <file>images/removeObject.png</file>
+    <file>images/gear.png</file>
     <file>images/previewData.png</file>
+    <file>images/graphics.png</file>
     <file>images/moreOperationsOnData.png</file>
     <file>images/checkbox.png</file>
     <file>images/mainWindow.png</file>

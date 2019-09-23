@@ -335,6 +335,11 @@ QTabBar::tab:!selected:hover
     border-top-right-radius: 3px;
     background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:0.4 #343434, stop:0.2 #343434, stop:0.1 #ffaa00);
 }
+QToolBar
+{
+	
+	border-color: rgb(136, 136, 136);
+}
 </string>
   </property>
   <property name="toolButtonStyle">
@@ -415,8 +420,8 @@ QTabBar::tab:!selected:hover
   <widget class="QDockWidget" name="dockWidgetDataView">
    <property name="minimumSize">
     <size>
-     <width>298</width>
-     <height>264</height>
+     <width>104</width>
+     <height>111</height>
     </size>
    </property>
    <property name="accessibleName">
@@ -527,10 +532,6 @@ QTabBar::tab:!selected:hover
     </property>
     <addaction name="actionDataView"/>
     <addaction name="actionProtocolRender"/>
-    <addaction name="separator"/>
-    <addaction name="actionOneDimensionalAnalysis"/>
-    <addaction name="actionTwoDimensionalAnalysis"/>
-    <addaction name="actionMultiDimensionalAnalysis"/>
    </widget>
    <widget class="QMenu" name="menuAnalysisTools">
     <property name="title">
@@ -560,7 +561,7 @@ QTabBar::tab:!selected:hover
     <string>Протокол</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>2</number>
+    <number>8</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContentsProtocol">
     <layout class="QGridLayout" name="gridLayout_2">
@@ -583,17 +584,41 @@ QTabBar::tab:!selected:hover
    <addaction name="actionDataView"/>
    <addaction name="actionProtocolRender"/>
   </widget>
-  <widget class="QToolBar" name="toolBarAnalysisActions">
+  <widget class="QToolBar" name="toolBar1DAnalysis">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string/>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
+    <enum>RightToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+  </widget>
+  <widget class="QToolBar" name="toolBar2DAnalysis">
+   <property name="windowTitle">
+    <string/>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>RightToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPrimaryAnalysis"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarMultiDimAnalysis">
+   <property name="windowTitle">
+    <string/>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>RightToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <action name="actionOpen">
    <property name="icon">
@@ -685,21 +710,6 @@ QTabBar::tab:!selected:hover
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionOneDimensionalAnalysis">
-   <property name="text">
-    <string>Аналіз одновимірних даних</string>
-   </property>
-  </action>
-  <action name="actionTwoDimensionalAnalysis">
-   <property name="text">
-    <string>Аналіз двовимірних даних</string>
-   </property>
-  </action>
-  <action name="actionMultiDimensionalAnalysis">
-   <property name="text">
-    <string>Аналіз багатовимірних даних</string>
-   </property>
-  </action>
   <action name="actionPrimaryAnalysis">
    <property name="icon">
     <iconset resource="../dataAnalysisRC.qrc">
@@ -712,7 +722,7 @@ QTabBar::tab:!selected:hover
   <action name="actionDeleteObjects">
    <property name="icon">
     <iconset resource="../dataAnalysisRC.qrc">
-     <normaloff>:/imgRc/images/removeObject.png</normaloff>:/imgRc/images/removeObject.png</iconset>
+     <normaloff>:/imgRc/images/minus.png</normaloff>:/imgRc/images/minus.png</iconset>
    </property>
    <property name="text">
     <string>Видалити об'єкт</string>
@@ -724,7 +734,7 @@ QTabBar::tab:!selected:hover
      <normaloff>:/imgRc/images/previewData.png</normaloff>:/imgRc/images/previewData.png</iconset>
    </property>
    <property name="text">
-    <string>Продивитись дані</string>
+    <string>Огляд даних</string>
    </property>
   </action>
   <action name="actionShiftData">
@@ -759,6 +769,66 @@ QTabBar::tab:!selected:hover
   <action name="actionSelectAll">
    <property name="text">
     <string>Обрати усі</string>
+   </property>
+  </action>
+  <action name="actionMatrixScatterDiagrams">
+   <property name="text">
+    <string>Матриця діаграм розкиду</string>
+   </property>
+  </action>
+  <action name="actionDiagramParallelCoordinates">
+   <property name="text">
+    <string>Діаграма паралельних координат</string>
+   </property>
+  </action>
+  <action name="actionBubbleDiagram">
+   <property name="text">
+    <string>Бульшакова діаграма</string>
+   </property>
+  </action>
+  <action name="actionDiagnosticChart">
+   <property name="text">
+    <string>Діагностична діаграма</string>
+   </property>
+  </action>
+  <action name="actionRegressionAnalysis">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/regression.png</normaloff>:/imgRc/images/regression.png</iconset>
+   </property>
+   <property name="text">
+    <string>Регресійний аналіз</string>
+   </property>
+  </action>
+  <action name="actionPartialCorrelationCoefficient">
+   <property name="text">
+    <string>Частковий коефіцієнт кореляції</string>
+   </property>
+  </action>
+  <action name="actionMultipleCorrelationCoefficient">
+   <property name="text">
+    <string>Множинний коефіцієнт кореляції</string>
+   </property>
+  </action>
+  <action name="actionPCA">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/PCA.png</normaloff>:/imgRc/images/PCA.png</iconset>
+   </property>
+   <property name="text">
+    <string>Застосувати МГК</string>
+   </property>
+   <property name="toolTip">
+    <string>Метод головних компонент</string>
+   </property>
+  </action>
+  <action name="actionFactorAnalysis">
+   <property name="icon">
+    <iconset resource="../dataAnalysisRC.qrc">
+     <normaloff>:/imgRc/images/factor.png</normaloff>:/imgRc/images/factor.png</iconset>
+   </property>
+   <property name="text">
+    <string>Факторний аналіз</string>
    </property>
   </action>
  </widget>

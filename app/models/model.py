@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QObject, pyqtSignal
-
+import numpy as np
 from app.other.storage import DataFrame
 
 
@@ -8,20 +8,26 @@ class Model(QObject):
     pathConvertFileAdded = pyqtSignal(str)
     pathFileOpenAdded = pyqtSignal(str)
     pathFileSaveAdded = pyqtSignal(str)
-    fileDataAdded = pyqtSignal()
+    fileDataAdded = pyqtSignal(list)
+    listDataCountSelectedItemsChanged = pyqtSignal(int)
 
     def __init__(self):
         super(Model, self).__init__()
         self._pathFileOpen = None
         self._pathFileSave = None
+        self._countCheckedItems = 0
         # parameters for convert file dialog
         self._pathConvertFile = None
         self._parametersConvertFileDialog = None
         # storage of data
-        self.dataFrame = DataFrame()
+        self._dataFrame = DataFrame()
         # connect into otherModels models
         self.pathFileOpenAdded.connect(self.onFilePathAdded)
         self.convertParametersAdded.connect(self.onConvertParametersAdded)
+
+    @property
+    def dataFrame(self):
+        return self._dataFrame
 
     @property
     def pathFileOpen(self):
@@ -59,6 +65,15 @@ class Model(QObject):
         self._parametersConvertFileDialog = values
         self.convertParametersAdded.emit(values)
 
+    @property
+    def countCheckedItems(self):
+        return self._countCheckedItems
+
+    @countCheckedItems.setter
+    def countCheckedItems(self, count: int):
+        self._countCheckedItems = count
+        self.listDataCountSelectedItemsChanged.emit(count)
+
     def onConvertParametersAdded(self):
         from app.other.Dialogs.convertFileDialog import convertToCSV
 
@@ -73,5 +88,9 @@ class Model(QObject):
             raise e
 
     def onFilePathAdded(self):
+        # set extracted content from file into storage
         content = self.dataFrame.getContentFromFile(self.pathFileOpen)
         self.dataFrame.frame = content
+        # emit field names in file into view
+        fieldNames = self.dataFrame.getFieldNames().tolist()
+        self.fileDataAdded.emit(fieldNames)

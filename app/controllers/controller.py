@@ -1,4 +1,5 @@
-from PyQt5.QtCore import QObject, pyqtSlot
+from PyQt5.QtCore import QObject, pyqtSlot, Qt
+from PyQt5.QtGui import QStandardItem
 
 
 class MainController(QObject):
@@ -25,3 +26,10 @@ class MainController(QObject):
     def setParametersConvertFileDialog(self, delimiter: str, names: str):
         if delimiter and names:
             self._model.parametersConvertFileDialog = delimiter, names
+
+    @pyqtSlot(QStandardItem)
+    def listDataChangeCountSelectedItems(self, item: QStandardItem):
+        if item.checkState() == Qt.Checked:
+            self._model.countCheckedItems += 1
+        else:
+            self._model.countCheckedItems -= 1
