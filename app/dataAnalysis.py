@@ -2,8 +2,9 @@ from PyQt5.QtWidgets import QApplication
 
 from app.controllers.controller import MainController
 from app.models.model import Model
-from app.other.Dialogs.convertFileDialog import ConvertFileDialog
-from app.other.Dialogs.fileDialog import FileDialog
+from app.components.dialogs.convertFileDialog import ConvertFileDialog
+from app.components.dialogs.previewDataDialog import PreviewDataDialog
+from app.components.dialogs.fileDialog import FileDialog
 from app.views.view import MainView
 
 
@@ -16,7 +17,9 @@ class App(QApplication):
         self.controller = MainController(self.model)
         self.fileDialog = FileDialog(self.controller)
         self.convertFileDialog = ConvertFileDialog(self.controller)
-        self.view = MainView(self.model, self.controller, self.fileDialog, self.convertFileDialog)
+        self.previewDataDialog = PreviewDataDialog(self.controller)
+        self.view = MainView(self.model, self.controller, self.fileDialog, self.convertFileDialog,
+                             self.previewDataDialog)
         self.view.show()
 
 

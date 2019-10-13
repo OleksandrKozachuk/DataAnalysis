@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'mainViewUI.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -359,7 +361,7 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.dockWidgetDataView = QtWidgets.QDockWidget(MainWindow)
-        self.dockWidgetDataView.setMinimumSize(QtCore.QSize(104, 111))
+        self.dockWidgetDataView.setMinimumSize(QtCore.QSize(244, 175))
         self.dockWidgetDataView.setAccessibleName("")
         self.dockWidgetDataView.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.dockWidgetDataView.setAutoFillBackground(False)
@@ -368,6 +370,9 @@ class Ui_MainWindow(object):
         self.dockWidgetContentsDataSet = QtWidgets.QWidget()
         self.dockWidgetContentsDataSet.setObjectName("dockWidgetContentsDataSet")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.dockWidgetContentsDataSet)
+        self.gridLayout_3.setContentsMargins(2, 2, 2, 2)
+        self.gridLayout_3.setHorizontalSpacing(2)
+        self.gridLayout_3.setVerticalSpacing(4)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.toolButtonObjectsSettings = QtWidgets.QToolButton(self.dockWidgetContentsDataSet)
         self.toolButtonObjectsSettings.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
@@ -380,17 +385,27 @@ class Ui_MainWindow(object):
         self.toolButtonObjectsSettings.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.toolButtonObjectsSettings.setAutoRaise(True)
         self.toolButtonObjectsSettings.setObjectName("toolButtonObjectsSettings")
-        self.gridLayout_3.addWidget(self.toolButtonObjectsSettings, 0, 1, 1, 1)
-        self.lineEditFilter = QtWidgets.QLineEdit(self.dockWidgetContentsDataSet)
-        self.lineEditFilter.setInputMask("")
-        self.lineEditFilter.setText("")
-        self.lineEditFilter.setObjectName("lineEditFilter")
-        self.gridLayout_3.addWidget(self.lineEditFilter, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.toolButtonObjectsSettings, 0, 4, 1, 1)
         self.listViewObjects = QtWidgets.QListView(self.dockWidgetContentsDataSet)
         self.listViewObjects.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.listViewObjects.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.listViewObjects.setObjectName("listViewObjects")
-        self.gridLayout_3.addWidget(self.listViewObjects, 1, 0, 1, 2)
+        self.gridLayout_3.addWidget(self.listViewObjects, 1, 0, 1, 5)
+        self.labelSignificanceLevel = QtWidgets.QLabel(self.dockWidgetContentsDataSet)
+        self.labelSignificanceLevel.setStyleSheet("")
+        self.labelSignificanceLevel.setObjectName("labelSignificanceLevel")
+        self.gridLayout_3.addWidget(self.labelSignificanceLevel, 2, 0, 1, 1)
+        self.lineEditSignificanceLevel = QtWidgets.QLineEdit(self.dockWidgetContentsDataSet)
+        self.lineEditSignificanceLevel.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.lineEditSignificanceLevel.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEditSignificanceLevel.setClearButtonEnabled(True)
+        self.lineEditSignificanceLevel.setObjectName("lineEditSignificanceLevel")
+        self.gridLayout_3.addWidget(self.lineEditSignificanceLevel, 2, 1, 1, 4)
+        self.lineEditFilter = QtWidgets.QLineEdit(self.dockWidgetContentsDataSet)
+        self.lineEditFilter.setInputMask("")
+        self.lineEditFilter.setText("")
+        self.lineEditFilter.setObjectName("lineEditFilter")
+        self.gridLayout_3.addWidget(self.lineEditFilter, 0, 0, 1, 4)
         self.dockWidgetDataView.setWidget(self.dockWidgetContentsDataSet)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidgetDataView)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -414,6 +429,8 @@ class Ui_MainWindow(object):
         self.dockWidgetContentsProtocol = QtWidgets.QWidget()
         self.dockWidgetContentsProtocol.setObjectName("dockWidgetContentsProtocol")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.dockWidgetContentsProtocol)
+        self.gridLayout_2.setContentsMargins(2, 2, 2, 2)
+        self.gridLayout_2.setHorizontalSpacing(2)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.treeViewProtocol = QtWidgets.QTreeView(self.dockWidgetContentsProtocol)
         self.treeViewProtocol.setObjectName("treeViewProtocol")
@@ -428,7 +445,6 @@ class Ui_MainWindow(object):
         self.toolBar1DAnalysis.setStyleSheet("")
         self.toolBar1DAnalysis.setObjectName("toolBar1DAnalysis")
         MainWindow.addToolBar(QtCore.Qt.RightToolBarArea, self.toolBar1DAnalysis)
-        MainWindow.insertToolBarBreak(self.toolBar1DAnalysis)
         self.toolBar2DAnalysis = QtWidgets.QToolBar(MainWindow)
         self.toolBar2DAnalysis.setWindowTitle("")
         self.toolBar2DAnalysis.setObjectName("toolBar2DAnalysis")
@@ -491,8 +507,8 @@ class Ui_MainWindow(object):
         self.actionShiftData.setObjectName("actionShiftData")
         self.actionLogData = QtWidgets.QAction(MainWindow)
         self.actionLogData.setObjectName("actionLogData")
-        self.actionStandartizeData = QtWidgets.QAction(MainWindow)
-        self.actionStandartizeData.setObjectName("actionStandartizeData")
+        self.actionStandardizeData = QtWidgets.QAction(MainWindow)
+        self.actionStandardizeData.setObjectName("actionStandardizeData")
         self.actionDeleteAbnormalData = QtWidgets.QAction(MainWindow)
         self.actionDeleteAbnormalData.setObjectName("actionDeleteAbnormalData")
         self.actionConvertToCSV = QtWidgets.QAction(MainWindow)
@@ -529,6 +545,10 @@ class Ui_MainWindow(object):
         icon13.addPixmap(QtGui.QPixmap(":/imgRc/images/factor.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionFactorAnalysis.setIcon(icon13)
         self.actionFactorAnalysis.setObjectName("actionFactorAnalysis")
+        self.actionCalculateIndependentFeatures = QtWidgets.QAction(MainWindow)
+        self.actionCalculateIndependentFeatures.setObjectName("actionCalculateIndependentFeatures")
+        self.actionDefineRawData = QtWidgets.QAction(MainWindow)
+        self.actionDefineRawData.setObjectName("actionDefineRawData")
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addSeparator()
@@ -562,6 +582,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Програмне забезпечення для аналізу даних."))
         self.dockWidgetDataView.setWindowTitle(_translate("MainWindow", "Об\'єкти"))
         self.toolButtonObjectsSettings.setToolTip(_translate("MainWindow", "Додаткові налаштування даних"))
+        self.labelSignificanceLevel.setText(_translate("MainWindow", "Рівень значущості:"))
+        self.lineEditSignificanceLevel.setText(_translate("MainWindow", "0.1"))
+        self.lineEditSignificanceLevel.setPlaceholderText(_translate("MainWindow", "Рівень значущості [0;1]"))
         self.lineEditFilter.setPlaceholderText(_translate("MainWindow", "Фільтр"))
         self.menuFile.setTitle(_translate("MainWindow", "&Файл"))
         self.menuNelp.setTitle(_translate("MainWindow", "&Допомога"))
@@ -588,7 +611,7 @@ class Ui_MainWindow(object):
         self.actionPreviewObjects.setText(_translate("MainWindow", "Огляд даних"))
         self.actionShiftData.setText(_translate("MainWindow", "Зсув даних"))
         self.actionLogData.setText(_translate("MainWindow", "Логарифмувати дані"))
-        self.actionStandartizeData.setText(_translate("MainWindow", "Стандартизувати дані"))
+        self.actionStandardizeData.setText(_translate("MainWindow", "Стандартизувати дані"))
         self.actionDeleteAbnormalData.setText(_translate("MainWindow", "Видалити аномальні спостереження"))
         self.actionConvertToCSV.setText(_translate("MainWindow", "Конвертувати у csv"))
         self.actionSelectAll.setText(_translate("MainWindow", "Обрати усі"))
@@ -602,5 +625,6 @@ class Ui_MainWindow(object):
         self.actionPCA.setText(_translate("MainWindow", "Застосувати МГК"))
         self.actionPCA.setToolTip(_translate("MainWindow", "Метод головних компонент"))
         self.actionFactorAnalysis.setText(_translate("MainWindow", "Факторний аналіз"))
-
+        self.actionCalculateIndependentFeatures.setText(_translate("MainWindow", "Перейти до незалежних ознак"))
+        self.actionDefineRawData.setText(_translate("MainWindow", "Зворотнє перетворення"))
 from app import dataAnalysisRC

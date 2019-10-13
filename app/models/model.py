@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QObject, pyqtSignal
-import numpy as np
-from app.other.storage import DataFrame
+
+from app.components.storage import DataFrame
 
 
 class Model(QObject):
@@ -9,17 +9,20 @@ class Model(QObject):
     pathFileOpenAdded = pyqtSignal(str)
     pathFileSaveAdded = pyqtSignal(str)
     fileDataAdded = pyqtSignal(list)
-    listDataCountSelectedItemsChanged = pyqtSignal(int)
+    listDataNamesSelectedItemsChanged = pyqtSignal(list)
 
     def __init__(self):
         super(Model, self).__init__()
         self._pathFileOpen = None
         self._pathFileSave = None
-        self._countCheckedItems = 0
+        # list widget checked items info
+        self._namesCheckedItems = None
         # parameters for convert file dialog
         self._pathConvertFile = None
         self._parametersConvertFileDialog = None
-        # storage of data
+
+        self._signLevel = None
+        # storage
         self._dataFrame = DataFrame()
         # connect into otherModels models
         self.pathFileOpenAdded.connect(self.onFilePathAdded)
@@ -66,16 +69,25 @@ class Model(QObject):
         self.convertParametersAdded.emit(values)
 
     @property
-    def countCheckedItems(self):
-        return self._countCheckedItems
+    def namesCheckedItems(self):
+        return self._namesCheckedItems
 
-    @countCheckedItems.setter
-    def countCheckedItems(self, count: int):
-        self._countCheckedItems = count
-        self.listDataCountSelectedItemsChanged.emit(count)
+    @namesCheckedItems.setter
+    def namesCheckedItems(self, names: str):
+        self._namesCheckedItems = names
+        self.listDataNamesSelectedItemsChanged.emit(names)
+
+    @property
+    def signLevel(self):
+        return self._signLevel
+
+    @signLevel.setter
+    def signLevel(self, alpha: float):
+        self._signLevel = alpha
+        self.dataFrame.alpha = alpha
 
     def onConvertParametersAdded(self):
-        from app.other.Dialogs.convertFileDialog import convertToCSV
+        from app.components.dialogs.convertFileDialog import convertToCSV
 
         delimiter, names = self.parametersConvertFileDialog
         try:

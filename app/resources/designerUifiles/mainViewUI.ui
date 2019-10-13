@@ -420,8 +420,8 @@ QToolBar
   <widget class="QDockWidget" name="dockWidgetDataView">
    <property name="minimumSize">
     <size>
-     <width>104</width>
-     <height>111</height>
+     <width>244</width>
+     <height>175</height>
     </size>
    </property>
    <property name="accessibleName">
@@ -444,7 +444,25 @@ QToolBar
    </attribute>
    <widget class="QWidget" name="dockWidgetContentsDataSet">
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="1">
+     <property name="leftMargin">
+      <number>2</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>2</number>
+     </property>
+     <property name="bottomMargin">
+      <number>2</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>2</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>4</number>
+     </property>
+     <item row="0" column="4">
       <widget class="QToolButton" name="toolButtonObjectsSettings">
        <property name="contextMenuPolicy">
         <enum>Qt::DefaultContextMenu</enum>
@@ -473,7 +491,49 @@ QToolBar
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
+     <item row="1" column="0" colspan="5">
+      <widget class="QListView" name="listViewObjects">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelSignificanceLevel">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Рівень значущості:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="4">
+      <widget class="QLineEdit" name="lineEditSignificanceLevel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>0.1</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Рівень значущості [0;1]</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="4">
       <widget class="QLineEdit" name="lineEditFilter">
        <property name="inputMask">
         <string/>
@@ -483,16 +543,6 @@ QToolBar
        </property>
        <property name="placeholderText">
         <string>Фільтр</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" colspan="2">
-      <widget class="QListView" name="listViewObjects">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Sunken</enum>
        </property>
       </widget>
      </item>
@@ -565,6 +615,21 @@ QToolBar
    </attribute>
    <widget class="QWidget" name="dockWidgetContentsProtocol">
     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="leftMargin">
+      <number>2</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>2</number>
+     </property>
+     <property name="bottomMargin">
+      <number>2</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>2</number>
+     </property>
      <item row="0" column="0">
       <widget class="QTreeView" name="treeViewProtocol"/>
      </item>
@@ -595,7 +660,7 @@ QToolBar
     <enum>RightToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
   </widget>
   <widget class="QToolBar" name="toolBar2DAnalysis">
@@ -747,7 +812,7 @@ QToolBar
     <string>Логарифмувати дані</string>
    </property>
   </action>
-  <action name="actionStandartizeData">
+  <action name="actionStandardizeData">
    <property name="text">
     <string>Стандартизувати дані</string>
    </property>
@@ -829,6 +894,16 @@ QToolBar
    </property>
    <property name="text">
     <string>Факторний аналіз</string>
+   </property>
+  </action>
+  <action name="actionCalculateIndependentFeatures">
+   <property name="text">
+    <string>Перейти до незалежних ознак</string>
+   </property>
+  </action>
+  <action name="actionDefineRawData">
+   <property name="text">
+    <string>Зворотнє перетворення</string>
    </property>
   </action>
  </widget>

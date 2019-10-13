@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QMainWindow, QToolButton
 from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QIcon, QPixmap
+from PyQt5.QtWidgets import QMainWindow, QToolButton
 
 from app.views.designerPyFiles.mainViewUI import Ui_MainWindow
 
@@ -9,7 +9,7 @@ CSV = "CSV(*.csv)"
 
 class MainView(QMainWindow):
 
-    def __init__(self, model, controller, fileDialog, convertFileDialog):
+    def __init__(self, model, controller, fileDialog, convertFileDialog, previewDataDialog):
         super().__init__()
         self._ui = Ui_MainWindow()
         self._ui.setupUi(self)
@@ -18,6 +18,7 @@ class MainView(QMainWindow):
         self._controller = controller
         self._fileDialog = fileDialog
         self._convertFileDialog = convertFileDialog
+        self._previewDataDialog = previewDataDialog
         # create tool buttons for analysis tool bars
         self.toolButtonGraphicsMultiDimAnalysis = QToolButton()
         self.toolButtonCorrelationMultiDimAnalysis = QToolButton()
@@ -33,9 +34,8 @@ class MainView(QMainWindow):
         # close widgets, coz QtDesigner is not allowed close widgets
         self._ui.dockWidgetDataView.close()
         self._ui.dockWidgetProtocol.close()
-        self.closeToolBar()
+        self.closeToolBars()
         # connect actions to controller
-        self.modelListView.itemChanged.connect(self._controller.listDataChangeCountSelectedItems)
         self._ui.actionConvertToCSV.triggered.connect(
             lambda: self._controller.setOpenPathConvertFile(
                 self._fileDialog.openFileNameDialog()
@@ -47,11 +47,56 @@ class MainView(QMainWindow):
             )
         )
         self._ui.actionSave.triggered.connect(self._fileDialog.saveFileDialog)
+        self._ui.actionPreviewObjects.triggered.connect(
+            lambda: self.showSelectedItems(self._model.namesCheckedItems)
+        )
+        self._ui.actionDeleteObjects.triggered.connect(
+            lambda: (
+                self._model.dataFrame.removeColumns(self._model.namesCheckedItems),
+                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+            )
+        )
+        self._ui.actionStandardizeData.triggered.connect(
+            lambda: (
+                self._model.dataFrame.standardizeSelected(self._model.namesCheckedItems),
+                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+            )
+        )
+        self._ui.actionDeleteAbnormalData.triggered.connect(
+            lambda: (
+                self._model.dataFrame.deleteAbnormalSelected(self._model.namesCheckedItems),
+                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+            )
+        )
+        self._ui.actionShiftData.triggered.connect(
+            lambda: (
+                self._model.dataFrame.shiftSelected(self._model.namesCheckedItems),
+                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+            )
+        )
+        self._ui.actionLogData.triggered.connect(
+            lambda: (
+                self._model.dataFrame.logSelected(self._model.namesCheckedItems),
+                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+            )
+        )
+        self._ui.actionPCA.triggered.connect(
+            lambda: (
+                self._model.dataFrame.principalComponentAnalysis(self._model.namesCheckedItems),
+                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+            )
+        )
+        self.modelListView.itemChanged.connect(
+            lambda: self._controller.setNameSelectedItem(self.modelListView)
+        )
+        self._ui.lineEditSignificanceLevel.textChanged.connect(
+            self._controller.setSignificanceLevel
+        )
         # listen for models event signals
         self._model.pathFileOpenAdded.connect(self._ui.dockWidgetDataView.show)
         self._model.pathConvertFileAdded.connect(self._convertFileDialog.show)
         self._model.fileDataAdded.connect(self.showDataViewItems)
-        self._model.listDataCountSelectedItemsChanged.connect(self.showAnalysisToolBar)
+        self._model.listDataNamesSelectedItemsChanged.connect(self.showAnalysisToolBar)
 
     def initToolBarMultiDim(self):
         self._ui.toolBarMultiDimAnalysis.addWidget(self.toolButtonGraphicsMultiDimAnalysis)
@@ -65,7 +110,7 @@ class MainView(QMainWindow):
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionPreviewObjects)
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionDeleteObjects)
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionShiftData)
-        self._ui.toolButtonObjectsSettings.addAction(self._ui.actionStandartizeData)
+        self._ui.toolButtonObjectsSettings.addAction(self._ui.actionStandardizeData)
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionLogData)
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionDeleteAbnormalData)
 
@@ -107,6 +152,7 @@ class MainView(QMainWindow):
 
     @pyqtSlot(list)
     def showDataViewItems(self, names: list):
+        self.modelListView.clear()
         # update list widget, add field names into list
         for name in names:
             item = QStandardItem(name)
@@ -114,15 +160,16 @@ class MainView(QMainWindow):
             item.setCheckable(True)
             self.modelListView.appendRow(item)
 
-    def closeToolBar(self):
+    def closeToolBars(self):
         self._ui.toolBar1DAnalysis.close()
         self._ui.toolBar2DAnalysis.close()
         self._ui.toolBarMultiDimAnalysis.close()
 
-    @pyqtSlot(int)
-    def showAnalysisToolBar(self, count: int):
+    @pyqtSlot(list)
+    def showAnalysisToolBar(self, names: list):
         # close all visible toolbars
-        self.closeToolBar()
+        self.closeToolBars()
+        count = len(names)
         # if count checkable data column equal to analysis, show toolbar
         if count == 1:
             self._ui.toolBar1DAnalysis.show()
@@ -132,3 +179,9 @@ class MainView(QMainWindow):
             self._ui.toolBarMultiDimAnalysis.show()
         else:
             return
+
+    @pyqtSlot(list)
+    def showSelectedItems(self, names: list):
+        dataInfo = self._model.dataFrame.frame[names].to_string()
+        self._previewDataDialog.showDataSet(dataInfo)
+        self._previewDataDialog.show()
