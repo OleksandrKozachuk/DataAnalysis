@@ -20,14 +20,24 @@ class MainView(QMainWindow):
         self._convertFileDialog = convertFileDialog
         self._previewDataDialog = previewDataDialog
         # create tool buttons for analysis tool bars
+        self.toolButtonGraphics1DimAnalysis = QToolButton()
+
+        self.toolButtonGraphics2DimAnalysis = QToolButton()
+        self.toolButtonRegression2DimAnalysis = QToolButton()
+        self.toolButtonCorrelation2DimAnalysis = QToolButton()
+
         self.toolButtonGraphicsMultiDimAnalysis = QToolButton()
         self.toolButtonCorrelationMultiDimAnalysis = QToolButton()
+        self.toolButtonPCAMultiDimAnalysis = QToolButton()
         # init tool buttons
-        self.initToolButtonActionsOnData()
-        self.initToolButtonMultiDimGraphics()
-        self.initToolButtonCorrelationMultiDimAnalysis()
+        self.initToolButtonsActionsOnData()
+        self.initToolButtons1DimAnalysis()
+        self.initToolButtons2DimAnalysis()
+        self.initToolButtonsMultiDimAnalysis()
         # init tool bars
-        self.initToolBarMultiDim()
+        self.initToolBar1DimAnalysis()
+        self.initToolBar2DimAnalysis()
+        self.initToolBarMultiDimAnalysis()
         # init QtListView as widget
         self.modelListView = QStandardItemModel(self._ui.listViewObjects)
         self._ui.listViewObjects.setModel(self.modelListView)
@@ -80,12 +90,12 @@ class MainView(QMainWindow):
                 self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
             )
         )
-        self._ui.actionPCA.triggered.connect(
-            lambda: (
-                self._model.dataFrame.principalComponentAnalysis(self._model.namesCheckedItems),
-                self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
-            )
-        )
+        # self._ui.actionPCA.triggered.connect(
+        #     lambda: (
+        #         self._model.dataFrame.principalComponentAnalysis(self._model.namesCheckedItems),
+        #         self.showDataViewItems(self._model.dataFrame.getFieldNames().tolist())
+        #     )
+        # )
         self.modelListView.itemChanged.connect(
             lambda: self._controller.setNameSelectedItem(self.modelListView)
         )
@@ -97,15 +107,30 @@ class MainView(QMainWindow):
         self._model.pathConvertFileAdded.connect(self._convertFileDialog.show)
         self._model.fileDataAdded.connect(self.showDataViewItems)
         self._model.listDataNamesSelectedItemsChanged.connect(self.showAnalysisToolBar)
+        # set tile style mdi window
+        self._ui.mdiArea.tileSubWindows()
 
-    def initToolBarMultiDim(self):
+    def initToolBar1DimAnalysis(self):
+        self._ui.toolBar1DAnalysis.addWidget(self.toolButtonGraphics1DimAnalysis)
+        self._ui.toolBar1DAnalysis.addAction(self._ui.actionStatisticalCharacteristics1DimAnalysis)
+
+    def initToolBar2DimAnalysis(self):
+        self._ui.toolBar2DAnalysis.addWidget(self.toolButtonGraphics2DimAnalysis)
+        self._ui.toolBar2DAnalysis.addAction(self._ui.actionStatisticalCharacteristics2DimAnalysis)
+        self._ui.toolBar2DAnalysis.addWidget(self.toolButtonCorrelation2DimAnalysis)
+        self._ui.toolBar2DAnalysis.addWidget(self.toolButtonRegression2DimAnalysis)
+
+    def initToolBarMultiDimAnalysis(self):
         self._ui.toolBarMultiDimAnalysis.addWidget(self.toolButtonGraphicsMultiDimAnalysis)
+        self._ui.toolBarMultiDimAnalysis.addAction(
+            self._ui.actionStatisticalCharacteristicsMultiDimAnalysis
+        )
         self._ui.toolBarMultiDimAnalysis.addWidget(self.toolButtonCorrelationMultiDimAnalysis)
-        self._ui.toolBarMultiDimAnalysis.addAction(self._ui.actionRegressionAnalysis)
-        self._ui.toolBarMultiDimAnalysis.addAction(self._ui.actionPCA)
+        self._ui.toolBarMultiDimAnalysis.addAction(self._ui.actionRegressionMultiDimAnalysis)
+        self._ui.toolBarMultiDimAnalysis.addWidget(self.toolButtonPCAMultiDimAnalysis)
         self._ui.toolBarMultiDimAnalysis.addAction(self._ui.actionFactorAnalysis)
 
-    def initToolButtonActionsOnData(self):
+    def initToolButtonsActionsOnData(self):
         # add actions into QtTooButton
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionPreviewObjects)
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionDeleteObjects)
@@ -114,8 +139,79 @@ class MainView(QMainWindow):
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionLogData)
         self._ui.toolButtonObjectsSettings.addAction(self._ui.actionDeleteAbnormalData)
 
-    def initToolButtonMultiDimGraphics(self):
-        self.setDefaultSettingToolButton(
+    def initToolButtons1DimAnalysis(self):
+        # initToolButton1DimGraphics
+        self.toolButtonGraphics1DimAnalysis.setToolTip("Графічні методи")
+        self.setDefaultSettingsToolButton(
+            button=self.toolButtonGraphics1DimAnalysis,
+            imagePath=":/imgRc/images/graphics.png"
+        )
+        # add graphics action into toolButtonGraphics
+        self.toolButtonGraphics1DimAnalysis.addAction(self._ui.actionDrawHist1DimAnalysis)
+        self.toolButtonGraphics1DimAnalysis.addAction(self._ui.actionDrawECDF1DimAnalysis)
+        self.toolButtonGraphics1DimAnalysis.addAction(
+            self._ui.actionDrawProbabilityDrid1DimAnalysis
+        )
+
+    def initToolButtons2DimAnalysis(self):
+        # initToolButton2DimGraphics
+        self.toolButtonGraphics2DimAnalysis.setToolTip("Графічні методи")
+        self.setDefaultSettingsToolButton(
+            button=self.toolButtonGraphics2DimAnalysis,
+            imagePath=":/imgRc/images/graphics.png"
+        )
+        # add graphics action into toolButtonGraphics
+        self.toolButtonGraphics2DimAnalysis.addAction(
+            self._ui.actionDrawCorrelationField2DimAnalysis
+        )
+        self.toolButtonGraphics2DimAnalysis.addAction(
+            self._ui.actionDrawHistOfRelativeFrequencies2DimAnalysis
+        )
+
+        # initToolButtonCorrelationAnalysis2Dim
+        self.toolButtonCorrelation2DimAnalysis.setToolTip("Кореляційний аналіз")
+        self.setDefaultSettingsToolButton(
+            button=self.toolButtonCorrelation2DimAnalysis,
+            imagePath=":/imgRc/images/correlation.png"
+        )
+        # add actions into toolButtonCorrelationAnalysis
+        self.toolButtonCorrelation2DimAnalysis.addAction(
+            self._ui.actionLinearCorrelation2DimAnalysis
+        )
+        self.toolButtonCorrelation2DimAnalysis.addAction(
+            self._ui.actionRankCorrelation2DimAnalysis
+        )
+        self.toolButtonCorrelation2DimAnalysis.addAction(
+            self._ui.actionConnectionTable2x22DimAnalysis
+        )
+        self.toolButtonCorrelation2DimAnalysis.addAction(
+            self._ui.actionConnectionTableMxN2DimAnalysis
+        )
+
+        # initToolButtonRegression2DimAnalysis
+        self.toolButtonRegression2DimAnalysis.setToolTip("Регресійний аналіз")
+        self.setDefaultSettingsToolButton(
+            button=self.toolButtonRegression2DimAnalysis,
+            imagePath=":/imgRc/images/regression.png"
+        )
+        # add actions into toolButtonRegression2Dim
+        self.toolButtonRegression2DimAnalysis.addAction(
+            self._ui.actionLinearRegressionLeastSquares2DimAnalysis
+        )
+        self.toolButtonRegression2DimAnalysis.addAction(
+            self._ui.actionLinearRegressionTheil2DimAnalysis
+        )
+        self.toolButtonRegression2DimAnalysis.addAction(
+            self._ui.actionDrawParabolicRegression2DimAnalysis
+        )
+        self.toolButtonRegression2DimAnalysis.addAction(
+            self._ui.actionDrawQuasiLinearRegression2DimAnalysis
+        )
+
+    def initToolButtonsMultiDimAnalysis(self):
+        # initToolButtonMultiDimGraphics
+        self.toolButtonGraphicsMultiDimAnalysis.setToolTip("Графічні методи")
+        self.setDefaultSettingsToolButton(
             button=self.toolButtonGraphicsMultiDimAnalysis,
             imagePath=":/imgRc/images/graphics.png"
         )
@@ -125,12 +221,13 @@ class MainView(QMainWindow):
         self.toolButtonGraphicsMultiDimAnalysis.addAction(self._ui.actionBubbleDiagram)
         self.toolButtonGraphicsMultiDimAnalysis.addAction(self._ui.actionDiagnosticChart)
 
-    def initToolButtonCorrelationMultiDimAnalysis(self):
-        self.setDefaultSettingToolButton(
+        # initToolButtonCorrelationMultiDimAnalysis
+        self.toolButtonCorrelationMultiDimAnalysis.setToolTip("Кореляційний аналіз")
+        self.setDefaultSettingsToolButton(
             button=self.toolButtonCorrelationMultiDimAnalysis,
             imagePath=":/imgRc/images/correlation.png"
         )
-        # add actions action into toolButtonGraphics
+        # add actions into toolButtonCorrelation
         self.toolButtonCorrelationMultiDimAnalysis.addAction(
             self._ui.actionMultipleCorrelationCoefficient
         )
@@ -138,8 +235,22 @@ class MainView(QMainWindow):
             self._ui.actionPartialCorrelationCoefficient
         )
 
-    @staticmethod
-    def setDefaultSettingToolButton(button: QToolButton, imagePath: str):
+        # initToolButtonPCAMultiDimAnalysis
+        self.toolButtonPCAMultiDimAnalysis.setToolTip("Компонентний аналіз")
+        self.setDefaultSettingsToolButton(
+            button=self.toolButtonPCAMultiDimAnalysis,
+            imagePath=":/imgRc/images/PCA.png"
+        )
+        # add actions into toolButtonPCA
+        self.toolButtonPCAMultiDimAnalysis.addAction(
+            self._ui.actionCalculateIndependentFeatures
+        )
+        self.toolButtonPCAMultiDimAnalysis.addAction(
+            self._ui.actionDefineRawData
+        )
+
+    @classmethod
+    def setDefaultSettingsToolButton(cls, button: QToolButton, imagePath: str):
         icon = QIcon(imagePath)
         icon.addPixmap(QPixmap(), QIcon.Normal, QIcon.Off)
         button.setIcon(icon)
